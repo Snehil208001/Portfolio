@@ -8,7 +8,7 @@ export const YOUR_BIO = `Hello! I'm ${YOUR_NAME}, an Android App Developer based
 export const YOUR_EMAIL = "snehil09087@gmail.com"; 
 
 // Path relative to index.html for your profile picture
-export const YOUR_PROFILE_PICTURE_URL = "src/assets/snehil-profile.jpg"; 
+export const YOUR_PROFILE_PICTURE_URL = "components/src/assets/snehil-profile.jpg.jpg"; 
 
 
 // --- NAVIGATION ---
@@ -23,11 +23,70 @@ export const NAV_LINKS = [
 // Add your projects here.
 export const PROJECTS_DATA: Project[] = [
   {
+    id: 'project-SwipeRightly',
+    title: 'SwipeRightly - Android Dating App',
+    description: `In-Depth Project Explanation: SwipeRightly App 📱
+This project is a fully functional dating app that demonstrates a modern, end-to-end Android development workflow. It's built on a solid architectural pattern and leverages the power of Firebase for its backend, resulting in a scalable and real-time user experience.
+
+1. 🏗️ Architecture: MVVM & The Data Flow
+The app is built using the Model-View-ViewModel (MVVM) architecture, which separates the UI from the business logic.
+
+View (UI Layer): This is what the user sees. It's built entirely with Jetpack Compose. Screens like LoginScreen.kt, ProfileScreen.kt, and SwipeScreen.kt are composable functions that observe data from the ViewModel and react to changes, automatically updating the UI. They are responsible for how to display the data and for passing user actions (like button clicks) to the ViewModel.
+
+ViewModel (SWViewModel.kt): This is the brain of the application. It holds and manages all the UI-related data. It never directly references the UI, which makes it highly testable. The SWViewModel is responsible for:
+
+Calling the backend (Firebase) for data.
+Handling all user actions (e.g., onLogin, onSignup, onLike).
+Holding the app's state (e.g., inProgress, signedIn, userData) using mutableStateOf, so Compose can automatically react to changes.
+Model (Data Layer): This represents the data and backend logic. It consists of:
+
+Data Classes: Simple data containers like UserData, ChatData, and Message defined in DataTypes.kt.
+Firebase: The backend services (Firestore, Authentication, Storage) that the ViewModel communicates with to fetch and store data.
+2. 🔐 User Authentication Flow
+The authentication process is handled securely by Firebase Authentication.
+
+Sign Up (SignUpScreen.kt):
+
+A new user enters their username, email, and password.
+The onSignup function in SWViewModel.kt is triggered.
+It first checks Firestore to ensure the username isn't already taken.
+If the username is unique, it calls auth.createUserWithEmailAndPassword.
+Upon success, a new user account is created in Firebase, and a corresponding user profile document is created in Firestore.
+Login (LoginScreen.kt):
+
+An existing user enters their email and password.
+The onLogin function in SWViewModel.kt calls auth.signInWithEmailAndPassword.
+If the credentials are correct, the signedIn state is updated, and the app navigates the user to the main SwipeScreen.
+3. ❤️ The Swiping Mechanism (SwipeScreen.kt & SwipeableCard.kt)
+This is the core feature of the app. It's a custom implementation that provides a great user experience.
+
+The UI (SwipeScreen.kt): The screen displays a stack of profile cards. Each card is a ProfileCard composable.
+The Gesture (SwipeableCard.kt): The swipeableCard Modifier is a custom modifier that detects drag gestures (detectDragGestures). As the user drags a card, it updates its offset and rotation to give a physical feel.
+State Management (SwipeableCardState.kt): Each card has its own state, managed by the SwipeableCardState class. This class tracks the card's offset and the final direction of the swipe (Left, Right, Up, Down).
+Processing Swipes:
+When a swipe gesture is completed, the onSwiped callback is invoked.
+In SwipeScreen.kt, this triggers either the vm.onDislike or vm.onLike function in the SWViewModel.
+onLike Logic: When a user swipes right, the app checks if the other user has also swiped right on them (a "reciprocal match").
+If it's a match: A popupNotification is shown, and a new chat document is created in the chat collection in Firestore, linking the two users.
+If it's not a match yet: The current user's "like" is simply recorded in their swipeRight list in Firestore.
+4. 💬 Real-time Chat (SingleChatScreen.kt)
+Once two users match, they can chat in real time.
+
+Fetching Messages: When a user opens a chat screen, the populateChat(chatId) function in the SWViewModel is called.
+Live Updates: This function attaches a snapshot listener to the messages sub-collection in Firestore (db.collection(COLLECTION_CHAT).document(chatId).collection(COLLECTION_MESSAGES).addSnapshotListener).
+Why this is powerful: A snapshot listener provides real-time updates. Whenever a new message is added to that collection in Firestore, Firebase automatically pushes the update to the app. The app's UI, built with Compose, observes the chatMessages state variable and automatically displays the new message without needing a manual refresh.
+Sending Messages: When a user sends a message, the onSendReply function creates a Message object and adds it to the Firestore collection, which then gets pushed to both users' devices in real time.`,
+    imageUrl: undefined, // Ensuring imageUrl is explicitly undefined or omitted
+    tags: ['Kotlin', 'Jetpack Compose', 'Firebase Auth', 'Firestore', 'MVVM', 'daggerHilt', 'Android SDK'],
+    liveUrl: 'https://drive.google.com/drive/folders/1F7GbHq0D2syjN9_HfdHwydgnSFLwjLqP?usp=drive_link',
+    sourceUrl: 'https://github.com/Snehil208001/SwipeRightly', 
+  },
+  {
     id: 'project-quickbuy',
     title: 'QuickBuy - Android Shopping App',
     description: `🛍️ Android Shopping App with Jetpack Compose & Firebase.\n\nThis is a modern, feature-rich e-commerce application for Android, built with the latest technologies to demonstrate a complete development lifecycle from user authentication to payment processing. It's a perfect showcase of clean architecture and modern UI development.\n\n✨ Key Features:\n- Sleek User Interface: Built entirely with Jetpack Compose for a dynamic, declarative, and responsive UI. Includes a smooth splash screen and intuitive navigation.\n- Firebase Integration: Utilizes Firebase for authentication (Email/Password, Google Sign-In), Firestore for real-time database, and Firebase Storage for product images.\n- MVVM Architecture: Follows MVVM (Model-View-ViewModel) for a clean, scalable, and testable codebase.\n- Feature Rich: Includes product listings, search, cart management, order history, and user profiles.`,
     imageUrl: undefined, // Ensuring imageUrl is explicitly undefined or omitted
-    tags: ['Kotlin', 'Jetpack Compose', 'Firebase Auth', 'Firestore', 'MVVM', 'Retrofit', 'Android SDK'],
+    tags: ['Kotlin', 'Jetpack Compose', 'Firebase Auth', 'Firestore', 'MVVM', 'Razorpay SDK ', 'Android SDK'],
     liveUrl: 'https://drive.google.com/drive/folders/1Ty3Itj-l4Oq_MXkY-Cunl6g25dRC__0O',
     sourceUrl: 'https://github.com/Snehil208001/QuickBuy', 
   },
@@ -61,7 +120,6 @@ export const SKILLS_DATA: Skill[] = [
   
   // Frontend (Android Specific)
   { id: 'jetpack-compose', name: 'Jetpack Compose', level: 90, category: 'Frontend' },
-  { id: 'android-xml', name: 'Android XML Layouts', level: 80, category: 'Frontend' },
   { id: 'android-sdk', name: 'Android SDK', level: 85, category: 'Frontend' },
   
   // Backend & APIs
@@ -77,7 +135,6 @@ export const SKILLS_DATA: Skill[] = [
   // Other
   { id: 'mvvm', name: 'MVVM Architecture', level: 90, category: 'Other' },
   { id: 'clean-arch', name: 'Clean Architecture', level: 80, category: 'Other' },
-  { id: 'agile', name: 'Agile Methodologies', level: 75, category: 'Other' },
 ];
 
 
