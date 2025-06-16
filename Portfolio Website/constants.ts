@@ -8,7 +8,7 @@ export const YOUR_BIO = `Hello! I'm ${YOUR_NAME}, an Android App Developer based
 export const YOUR_EMAIL = "snehil09087@gmail.com"; 
 
 // Path relative to index.html for your profile picture
-export const YOUR_PROFILE_PICTURE_URL = "components/src/assets/snehil-profile.jpg.jpg"; 
+export const YOUR_PROFILE_PICTURE_URL = "src/assets/snehil-profile.jpg.jpg"; 
 
 
 // --- NAVIGATION ---
@@ -105,7 +105,7 @@ Sending Messages: When a user sends a message, the onSendReply function creates 
     description: `📄 My personal portfolio website (this one!).\n\nBuilt with React and Tailwind CSS to showcase my skills, projects, and provide a way to get in touch. It's designed to be responsive and easily updatable.\n\nKey Aspects:\n- Component-Based: Developed using React for a modular and maintainable structure.\n- Styled with Tailwind: Utilizes Tailwind CSS for rapid UI development and a clean, modern aesthetic.\n- Dynamic Content: Data like project details and skills are managed in a central constants file for easy updates.`,
     imageUrl: undefined,
     tags: ['React', 'TypeScript', 'Tailwind CSS', 'HTML'], 
-    sourceUrl: '#', 
+    sourceUrl: 'https://github.com/Snehil208001/Portfolio', 
   },
   // Add more projects here
 ];
@@ -156,7 +156,7 @@ export const CONTACT_LINKS_DATA: ContactLink[] = [
   { 
     id: 'linkedin', 
     name: 'LinkedIn', 
-    url: '#', // Replace with your LinkedIn URL
+    url: 'https://www.linkedin.com/in/snehil-snehil-9779a336b/', // Replace with your LinkedIn URL
     // icon: <LinkedInIconComponent />
   },
   // Add other social media links here (e.g., Twitter, dev.to)
